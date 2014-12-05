@@ -18,9 +18,18 @@ import com.fujitsu.frontech.palmsecure.*;
 import com.fujitsu.frontech.palmsecure.util.*;
 
 public class PsThreadEnroll extends PsThreadBase {
+	
+	private String firstName = null;
+	private String village = null;
+	private String family_size = null;
+	private String roofing = null;
 
-	public PsThreadEnroll(PsMainFrame frame, PsBusinessListener businesslistener, PalmSecureIf palmsecureIf, JAVA_uint32 moduleHandle, String userID) {
+	public PsThreadEnroll(PsMainFrame frame, PsBusinessListener businesslistener, PalmSecureIf palmsecureIf, JAVA_uint32 moduleHandle, String userID, String firstName, String village, String family_size, String roofing) {
 		super(frame, businesslistener, palmsecureIf, moduleHandle, userID);
+		this.firstName = firstName;
+		this.village = village;
+		this.family_size = family_size;
+		this.roofing = roofing;
 	}
 
 	public void run() {
@@ -353,7 +362,7 @@ public class PsThreadEnroll extends PsThreadBase {
 				///////////////////////////////////////////////////////////////////////////
 
 				PsDataManager dataMng = PsDataManager.GetInstance();
-				dataMng.Ps_Sample_Apl_Java_Insert(userID, bufferBIR);
+				dataMng.Ps_Sample_Apl_Java_Insert(userID, firstName, village, family_size, roofing, bufferBIR);
 
 				break;
 
